@@ -1,9 +1,9 @@
 package main
 
 import (
-	"brain-api/hello"
+	"brain-api/api"
 )
 
 func main() {
-	hello.Init()
+	api.Run()
 }
