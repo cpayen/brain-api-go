@@ -1,7 +1,10 @@
 package api
 
 import (
+	"brain-api/data"
+	"brain-api/models"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -13,6 +16,7 @@ func Run() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler).Methods("GET")
 	r.HandleFunc("/hello/{there}", HelloHandler).Methods("GET")
+	r.HandleFunc("/insert/folder", InsertFolderHandler).Methods("GET")
 	log.Println(http.ListenAndServe(":8000", r))
 }
 
@@ -36,4 +40,14 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 // Test is...
 type Test struct {
 	Message string
+}
+
+// InsertFolderHandler is...
+func InsertFolderHandler(w http.ResponseWriter, r *http.Request) {
+	folder := models.NewFolder("coucou")
+	newID := data.InsertOneFolder(folder)
+	fmt.Println(newID)
+	jsonResponse, _ := json.Marshal(folder)
+	w.WriteHeader(http.StatusOK)
+	w.Write(jsonResponse)
 }
