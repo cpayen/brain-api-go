@@ -11,9 +11,19 @@ type Folder struct {
 }
 
 // NewFolder is...
-func NewFolder(title string) *Folder {
-	f := new(Folder)
-	f.Type = "folder"
-	f.Title = title
-	return f
+// func NewFolder(title string) *Folder {
+// 	f := new(Folder)
+// 	f.Type = "folder"
+// 	f.Title = title
+// 	return f
+// }
+
+// SetCreationDate is...
+func (c *Folder) SetCreationDate(d time.Time) {
+	c.CreatedAt = d
+}
+
+// SetUpdateDate is...
+func (c *Folder) SetUpdateDate(d time.Time) {
+	c.UpdatedAt = d
 }

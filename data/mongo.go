@@ -29,12 +29,12 @@ func init() {
 	db = client.Database(dbName)
 }
 
-// InsertOneFolder inserts one folder from Folder model
-func InsertOneFolder(folder *models.Folder) string {
-	folder.CreatedAt = time.Now()
-	folder.UpdatedAt = time.Now()
-	fmt.Println(folder)
-	result, err := db.Collection(contentCollection).InsertOne(context.Background(), folder)
+// InsertOneContentItem inserts one content item from Content interface
+func InsertOneContentItem(item models.Content) string {
+	item.SetCreationDate(time.Now())
+	item.SetUpdateDate(time.Now())
+	fmt.Println(item)
+	result, err := db.Collection(contentCollection).InsertOne(context.Background(), item)
 	if err != nil {
 		log.Fatal(err)
 	}
