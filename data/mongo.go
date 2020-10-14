@@ -34,6 +34,7 @@ func GetContentItem(id string) (bson.M, error) {
 	objID, _ := primitive.ObjectIDFromHex(id)
 	result := db.Collection(contentCollection).FindOne(context.Background(), bson.M{"_id": objID})
 	if result.Err() != nil {
+		log.Fatal(result.Err())
 		return nil, result.Err()
 	}
 	doc := bson.M{}
@@ -69,6 +70,7 @@ func InsertContentItem(item models.Content) (bson.M, error) {
 	result, err := db.Collection(contentCollection).InsertOne(context.Background(), item)
 	if err != nil {
 		log.Fatal(err)
+		return nil, err
 	}
 	newID := result.InsertedID
 	id := string(newID.(primitive.ObjectID).Hex())
