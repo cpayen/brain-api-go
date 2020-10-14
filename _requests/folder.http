@@ -1,7 +1,18 @@
 
+### POST folder
+
 POST http://localhost:8000/folders HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Test post folder"
+    "title": "New folder"
+}
+
+### PUT folder
+
+PUT http://localhost:8000/folders/5f836b5ced3ed361a39c9a1e HTTP/1.1
+content-type: application/json
+
+{
+    "title": "New folder hophophop"
 }
